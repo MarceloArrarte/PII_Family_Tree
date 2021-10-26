@@ -4,18 +4,11 @@ using System;
 
 namespace Library
 {
-    public class Node
+    public class Node : IVisitable
     {
-        private int number;
+        public Persona Value {get; private set;}
 
         private List<Node> children = new List<Node>();
-
-        public int Number {
-            get
-            {
-                return this.number;
-            }
-        }
 
         public ReadOnlyCollection<Node> Children { 
             get
@@ -24,9 +17,9 @@ namespace Library
             }
         }
 
-        public Node(int number)
+        public Node(Persona value)
         {
-            this.number = number;
+            this.Value = value;
         }
 
         public void AddChildren(Node n)
@@ -34,5 +27,8 @@ namespace Library
             this.children.Add(n);
         }
         
+        public void AcceptVisitor(IVisitor visitor) {
+            visitor.Visitar(this);
+        }
     }
 }

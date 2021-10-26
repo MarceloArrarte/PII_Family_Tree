@@ -7,24 +7,38 @@ namespace Program
     {
         static void Main(string[] args)
         {
-            Node n1 = new Node(1);
-            Node n2 = new Node(2);
-            Node n3 = new Node(3);
-            Node n4 = new Node(4);
-            Node n5 = new Node(5);
-            Node n6 = new Node(6);
-            Node n7 = new Node(7);
+            Node n1 = new Node(new Persona("Artigas Arrarte", 93));
+
+            Node n2 = new Node(new Persona("Gerardo Arrarte", 66));
+            Node n3 = new Node(new Persona("Malila Arrarte", 64));
+            Node n4 = new Node(new Persona("Silvana Arrarte", 61));
+            Node n5 = new Node(new Persona("Alicia Arrarte", 59));
+            Node n6 = new Node(new Persona("Pablo Arrarte", 54));
+
+            Node n7 = new Node(new Persona("Marco Codevilla", 38));
+            Node n8 = new Node(new Persona("Andrés Codevilla", 30));
+            Node n9 = new Node(new Persona("Marcelo Arrarte", 20));
+
+            Node n10 = new Node(new Persona("Julia Codevilla", 5));
 
             n1.AddChildren(n2);
             n1.AddChildren(n3);
+            n1.AddChildren(n4);
+            n1.AddChildren(n5);
+            n1.AddChildren(n6);
 
-            n2.AddChildren(n4);
-            n2.AddChildren(n5);
+            n4.AddChildren(n7);
+            n4.AddChildren(n8);
 
-            n3.AddChildren(n6);
-            n3.AddChildren(n7);
+            n6.AddChildren(n9);
+
+            n7.AddChildren(n10);
 
             // visitar el árbol aquí
+            AddAgeVisitor visitor = new AddAgeVisitor();
+            n1.AcceptVisitor(visitor);
+            int sumaEdades = visitor.AddedAges;
+            Console.WriteLine($"Suma edades: {sumaEdades}");
         }
     }
 }
