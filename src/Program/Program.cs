@@ -39,6 +39,16 @@ namespace Program
             n1.AcceptVisitor(visitor);
             int sumaEdades = visitor.AddedAges;
             Console.WriteLine($"Suma edades: {sumaEdades}");
+
+            FindOldestLeafVisitor visitor2 = new FindOldestLeafVisitor();
+            n1.AcceptVisitor(visitor2);
+            Persona oldestChild = visitor2.OldestChild;
+            Console.WriteLine($"La hoja del árbol más vieja es {oldestChild.Nombre} y tiene {oldestChild.Edad} años.");
+        
+            FindLongestNameVisitor visitor3 = new FindLongestNameVisitor();
+            n1.AcceptVisitor(visitor3);
+            string longestName = visitor3.LongestName;
+            Console.WriteLine($"El nombre más largo en el árbol es {longestName}.");
         }
     }
 }
